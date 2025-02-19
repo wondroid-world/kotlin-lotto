@@ -12,10 +12,22 @@ class ValidationTest {
             Validation().isEmpty(input)
         }
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["가나다라"])
+    fun `구입금액이 Int타입이 아니면 에러를 출력한다`(input: String) {
+        assertThrows<IllegalArgumentException> {
+            Validation().isInteger(input)
+        }
+    }
 }
 
 class Validation {
     fun isEmpty(input: String) {
         require(input.isNotEmpty())
+    }
+
+    fun isInteger(input: String) {
+        requireNotNull(input.toIntOrNull())
     }
 }
