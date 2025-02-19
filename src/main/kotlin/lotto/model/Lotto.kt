@@ -7,6 +7,7 @@ class Lotto(
     init {
         require(numbers.size == 6)
         require(numbers.size == numbers.toSet().size)
+        require(!numbers.contains(bonusNumber))
     }
 
     fun getSize(): Int = numbers.size

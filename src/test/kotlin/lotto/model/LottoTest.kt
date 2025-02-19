@@ -26,4 +26,21 @@ class LottoTest {
             )
         }
     }
+
+    @Test
+    fun `당첨 번호와 보너스 번호는 중복되지 않는다`() {
+        assertThrows<IllegalArgumentException> {
+            Lotto(
+                listOf(
+                    LottoNumber(1),
+                    LottoNumber(2),
+                    LottoNumber(3),
+                    LottoNumber(4),
+                    LottoNumber(5),
+                    LottoNumber(6),
+                ),
+                LottoNumber(6),
+            )
+        }
+    }
 }
