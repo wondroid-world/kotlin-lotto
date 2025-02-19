@@ -28,6 +28,14 @@ class ValidationTest {
             Validation().isNegativeNumber(input)
         }
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["500"])
+    fun `구입금액이 1000원 단위로 입력되었는지 판단한다`(input: String) {
+        assertThrows<IllegalArgumentException> {
+            Validation().isUnits(input)
+        }
+    }
 }
 
 class Validation {
@@ -41,5 +49,9 @@ class Validation {
 
     fun isNegativeNumber(input: String) {
         require(input.toInt() > 0)
+    }
+
+    fun isUnits(input: String) {
+        require(input.toInt() % 1000 == 0)
     }
 }
