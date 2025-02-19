@@ -33,9 +33,9 @@ class LottoScannerTest {
                 ),
             )
 
-        val lottoScanner = LottoScanner(winning, lotto)
+        val lottoScanner = LottoScanner(winning)
 
-        val rank = lottoScanner.getRank()
+        val rank = lottoScanner.getRank(lotto)
         assertEquals(rank, Rank.FIRST)
     }
 }

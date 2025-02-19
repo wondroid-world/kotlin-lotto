@@ -2,20 +2,23 @@ package lotto
 
 class LottoScanner(
     private val winning: Lotto,
-    private val lotto: Lotto,
 ) {
-    private val countOfMatch: Int = getCountOfMatch()
-    private val matchBonus: Boolean = getMatchBonus()
+    fun getResult(lottos: List<Lotto>): LottoResult {
+        val result = lottos.map { getRank(it) }
+        return LottoResult(result)
+    }
 
-    fun getRank(): Rank {
+    fun getRank(lotto: Lotto): Rank {
+        val countOfMatch: Int = getCountOfMatch(lotto)
+        val matchBonus: Boolean = getMatchBonus(lotto)
         return Rank.valueOf(countOfMatch, matchBonus)
     }
 
-    private fun getCountOfMatch(): Int {
+    private fun getCountOfMatch(lotto: Lotto): Int {
         return winning.getNumbers().intersect(lotto.getNumbers()).size
     }
 
-    private fun getMatchBonus(): Boolean {
+    private fun getMatchBonus(lotto: Lotto): Boolean {
         return lotto.getNumbers().contains(winning.getBonusNumber())
     }
 }
