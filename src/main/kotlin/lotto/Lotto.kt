@@ -2,6 +2,7 @@ package lotto
 
 class Lotto(
     private val numbers: List<LottoNumber> = generateLotto(),
+    private val bonusNumber: LottoNumber? = null,
 ) {
     init {
         require(numbers.size == 6)
@@ -9,6 +10,10 @@ class Lotto(
     }
 
     fun getSize(): Int = numbers.size
+
+    fun getNumbers(): List<LottoNumber> = numbers.toList()
+
+    fun getBonusNumber(): LottoNumber? = bonusNumber
 
     companion object {
         private fun generateLotto(): List<LottoNumber> {
