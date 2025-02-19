@@ -2,6 +2,7 @@ package lotto
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 class LottoTest {
     @Test
@@ -18,5 +19,21 @@ class LottoTest {
                 ),
             )
         assertEquals(lotto.getSize(), 6)
+    }
+
+    @Test
+    fun `6개의 로또 번호는 중복되면 안된다`() {
+        assertThrows<IllegalArgumentException> {
+            Lotto(
+                listOf(
+                    LottoNumber(1),
+                    LottoNumber(2),
+                    LottoNumber(3),
+                    LottoNumber(4),
+                    LottoNumber(5),
+                    LottoNumber(5),
+                ),
+            )
+        }
     }
 }
