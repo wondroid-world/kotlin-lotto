@@ -1,4 +1,4 @@
-package lotto
+package lotto.model
 
 class LottoResult(private val ranks: List<Rank>) {
     fun getWinningStatus(): Map<Rank, Int> {
