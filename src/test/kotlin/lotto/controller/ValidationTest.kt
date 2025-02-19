@@ -20,6 +20,14 @@ class ValidationTest {
             Validation().isInteger(input)
         }
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["0", "-1"])
+    fun `구입금액이 0과 음수면 에러를 출력한다`(input: String) {
+        assertThrows<IllegalArgumentException> {
+            Validation().isNegativeNumber(input)
+        }
+    }
 }
 
 class Validation {
@@ -29,5 +37,9 @@ class Validation {
 
     fun isInteger(input: String) {
         requireNotNull(input.toIntOrNull())
+    }
+
+    fun isNegativeNumber(input: String) {
+        require(input.toInt() > 0)
     }
 }
