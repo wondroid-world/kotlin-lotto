@@ -11,6 +11,10 @@ data class Lotto private constructor(
         return lottoNumbers.contains(bonusNumber)
     }
 
+    fun count(winningLotto: Lotto): Int {
+        return lottoNumbers.filter { lottoNumber -> winningLotto.contanins(lottoNumber) }.size
+    }
+
     companion object {
         private const val NUMBER_OF_LOTTO_NUMBERS = 6
 

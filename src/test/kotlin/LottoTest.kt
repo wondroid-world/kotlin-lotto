@@ -66,6 +66,90 @@ class LottoTest {
 
         assertThat(actual).isFalse()
     }
+
+    @Test
+    fun `로또 번호 중 당첨 번호가 6개 있는 지 확인할 수 있다`() {
+        val winningLotto = Lotto.from(1, 2, 3, 4, 5, 6)
+        val lotto = Lotto.from(1, 2, 3, 4, 5, 6)
+
+        val actual = lotto.count(winningLotto)
+
+        val expected = 6
+
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
+    fun `로또 번호 중 당첨 번호가 5개 있는 지 확인할 수 있다`() {
+        val winningLotto = Lotto.from(1, 2, 3, 4, 5, 6)
+        val lotto = Lotto.from(1, 2, 3, 4, 5, 7)
+
+        val actual = lotto.count(winningLotto)
+
+        val expected = 5
+
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
+    fun `로또 번호 중 당첨 번호가 4개 있는 지 확인할 수 있다`() {
+        val winningLotto = Lotto.from(1, 2, 3, 4, 5, 6)
+        val lotto = Lotto.from(1, 2, 3, 4, 7, 8)
+
+        val actual = lotto.count(winningLotto)
+
+        val expected = 4
+
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
+    fun `로또 번호 중 당첨 번호가 3개 있는 지 확인할 수 있다`() {
+        val winningLotto = Lotto.from(1, 2, 3, 4, 5, 6)
+        val lotto = Lotto.from(1, 2, 3, 7, 8, 9)
+
+        val actual = lotto.count(winningLotto)
+
+        val expected = 3
+
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
+    fun `로또 번호 중 당첨 번호가 2개 있는 지 확인할 수 있다`() {
+        val winningLotto = Lotto.from(1, 2, 3, 4, 5, 6)
+        val lotto = Lotto.from(1, 2, 7, 8, 9, 10)
+
+        val actual = lotto.count(winningLotto)
+
+        val expected = 2
+
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
+    fun `로또 번호 중 당첨 번호가 1개 있는 지 확인할 수 있다`() {
+        val winningLotto = Lotto.from(1, 2, 3, 4, 5, 6)
+        val lotto = Lotto.from(1, 7, 8, 9, 10, 11)
+
+        val actual = lotto.count(winningLotto)
+
+        val expected = 1
+
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
+    fun `로또 번호 중 당첨 번호가 0개 있는 지 확인할 수 있다`() {
+        val winningLotto = Lotto.from(1, 2, 3, 4, 5, 6)
+        val lotto = Lotto.from(7, 8, 9, 10, 11, 12)
+
+        val actual = lotto.count(winningLotto)
+
+        val expected = 0
+
+        assertThat(actual).isEqualTo(expected)
+    }
 }
 
 
