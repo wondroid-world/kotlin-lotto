@@ -65,7 +65,7 @@ data class Lotto private constructor(
         fun from(vararg number: Int): Lotto = from(number.toList())
 
         fun from(numbers: List<Int>): Lotto {
-            val lottoNumbers = numbers.map { LottoNumber(it) }
+            val lottoNumbers = numbers.map { LottoNumber.from(it) }
             if (lottoNumbers.size != lottoNumbers.toSet().size) {
                 throw IllegalArgumentException("로또 번호는 중복되면 안됩니다.")
             }
