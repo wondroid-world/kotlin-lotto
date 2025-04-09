@@ -37,7 +37,7 @@ class LottoTest {
     }
 }
 
-class Lotto(
+data class Lotto private constructor(
     private val lottoNumbers: Set<LottoNumber>
 ) {
     init {
@@ -49,10 +49,10 @@ class Lotto(
     companion object {
         fun from(vararg number: Int): Lotto {
             val lottoNumbers = number.map { LottoNumber(it) }
-            if (lottoNumbers.size == lottoNumbers.toSet().size) {
-                return Lotto(lottoNumbers.toSet())
+            if (lottoNumbers.size != lottoNumbers.toSet().size) {
+                throw IllegalArgumentException("로또 번호는 중복되면 안됩니다.")
             }
-            throw IllegalArgumentException("로또 번호는 중복되면 안됩니다.")
+            return Lotto(lottoNumbers.toSet())
         }
     }
 }
