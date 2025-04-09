@@ -25,6 +25,16 @@ class LottoTest {
             Lotto.from(*numbers)
         }
     }
+
+    @ParameterizedTest
+    @CsvSource(value = ["1,2,3,4,5,5", "1,2,3,4,5,6,6"])
+    fun `로또는 중복되면 안된다`(numbersString: String) {
+        val numbers = numbersString.split(",").map { it.toInt() }.toIntArray()
+
+        assertThrows<IllegalArgumentException> {
+            Lotto.from(*numbers)
+        }
+    }
 }
 
 class Lotto(
