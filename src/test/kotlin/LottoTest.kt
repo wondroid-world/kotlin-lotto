@@ -62,13 +62,7 @@ data class Lotto private constructor(
         private const val LOTTO_END_NUMBER = 45
         private const val NUMBER_OF_LOTTO_NUMBERS = 6
 
-        fun from(vararg number: Int): Lotto {
-            val lottoNumbers = number.map { LottoNumber(it) }
-            if (lottoNumbers.size != lottoNumbers.toSet().size) {
-                throw IllegalArgumentException("로또 번호는 중복되면 안됩니다.")
-            }
-            return Lotto(lottoNumbers.toSet())
-        }
+        fun from(vararg number: Int): Lotto = from(number.toList())
 
         fun from(numbers: List<Int>): Lotto {
             val lottoNumbers = numbers.map { LottoNumber(it) }
@@ -79,11 +73,12 @@ data class Lotto private constructor(
         }
 
         fun create(): Lotto {
-            val lottoNumbers =
+            val randomNumber =
                 (LOTTO_START_NUMBER..LOTTO_END_NUMBER)
                     .shuffled()
                     .take(NUMBER_OF_LOTTO_NUMBERS)
-            return from(lottoNumbers)
+            return from(randomNumber)
         }
     }
 }
+
