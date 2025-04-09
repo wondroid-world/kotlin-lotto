@@ -46,6 +46,26 @@ class LottoTest {
 
         assertThat(actual).isEqualTo(expected)
     }
+
+    @Test
+    fun `로또 번호 중 보너스 번호가 있으면 true를 반환한다`() {
+        val lotto = Lotto.from(1, 2, 3, 4, 5, 6)
+        val bonusNumber = LottoNumber.from(1)
+
+        val actual = lotto.contanins(bonusNumber)
+
+        assertThat(actual).isTrue()
+    }
+
+    @Test
+    fun `로또 번호 중 보너스 번호가 없으면 false를 반환한다`() {
+        val lotto = Lotto.from(1, 2, 3, 4, 5, 6)
+        val bonusNumber = LottoNumber.from(7)
+
+        val actual = lotto.contanins(bonusNumber)
+
+        assertThat(actual).isFalse()
+    }
 }
 
 

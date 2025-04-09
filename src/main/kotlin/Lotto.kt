@@ -7,6 +7,10 @@ data class Lotto private constructor(
 
     val size get() = lottoNumbers.size
 
+    fun contanins(bonusNumber: LottoNumber): Boolean {
+        return lottoNumbers.contains(bonusNumber)
+    }
+
     companion object {
         private const val NUMBER_OF_LOTTO_NUMBERS = 6
 
