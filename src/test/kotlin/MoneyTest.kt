@@ -62,5 +62,18 @@ class MoneyTest {
         // when, then
         assertThrows<IllegalArgumentException> { largeMoney / smallMoney }
     }
+
+    @Test
+    fun `14_000원 나누기 1_000원의 나머지는 0원이다`() {
+        // given
+        val largeMoney = Money(14_000)
+        val smallMoney = Money(1_000)
+
+        // when, then
+        val excepted = Money(0)
+        val actual = largeMoney % smallMoney
+
+        assertThat(actual).isEqualTo(excepted)
+    }
 }
 

@@ -14,4 +14,9 @@ value class Money(
         require(other.value > 0) { "0원은 나눌 수 없습니다." }
         return this.value / other.value
     }
+
+    operator fun rem(other: Money): Money {
+        require(other.value > 0) { "0원은 나눌 수 없습니다." }
+        return Money(this.value % other.value)
+    }
 }
