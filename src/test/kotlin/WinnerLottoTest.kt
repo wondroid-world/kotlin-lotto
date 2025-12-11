@@ -11,7 +11,7 @@ class WinnerLottoTest {
 
         // when, then
         val excepted: Int = 6
-        val actual = winnerLotto.countOfSameNumber(lotto)
+        val actual = winnerLotto.countOfMatch(lotto)
 
         assertThat(actual).isEqualTo(excepted)
     }

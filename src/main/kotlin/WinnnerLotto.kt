@@ -6,7 +6,7 @@ data class WinnnerLotto(
         require(!bonusNumber.contains(lotto))
     }
 
-    fun countOfSameNumber(other: Lotto): Int {
+    fun countOfMatch(other: Lotto): Int {
         return lotto.matchCount(other)
     }
 }
