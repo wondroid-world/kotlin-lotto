@@ -1,21 +1,24 @@
 data class Lotto(
-    private val numbers: Set<LottoNumber>
+    private val _numbers: List<LottoNumber>
 ) {
     init {
-        require(numbers.size == LOTTO_SIZE)
+        require(_numbers.size == _numbers.toSet().size)
+        require(_numbers.size == SIZE)
     }
 
-    constructor(nums: List<LottoNumber>) : this(nums.toSet()) {
-        require(numbers.size == numbers.toSet().size)
-    }
+    constructor(vararg nums: Int) : this(nums.map(::LottoNumber))
 
-    constructor(vararg nums: Int) : this(nums.map { LottoNumber(it) })
+    private val numbers: Set<LottoNumber> = _numbers.toSet()
 
     fun matchCount(other: Lotto): Int = numbers.count { num -> other.contains(num) }
 
     fun contains(num: LottoNumber): Boolean = num in numbers
 
     companion object {
-        const val LOTTO_SIZE: Int = 6
+        const val SIZE: Int = 6
+
+        fun from(nums: List<Int>): Lotto {
+            return Lotto(nums.map(::LottoNumber))
+        }
     }
 }
