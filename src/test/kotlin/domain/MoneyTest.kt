@@ -49,7 +49,7 @@ class MoneyTest {
         val smallMoney = Money(1_000)
 
         // when, then
-        val excepted = 14
+        val excepted = 14.0
         val actual = largeMoney / smallMoney
 
         assertThat(actual).isEqualTo(excepted)
@@ -74,6 +74,19 @@ class MoneyTest {
         // when, then
         val excepted = Money(0)
         val actual = largeMoney % smallMoney
+
+        assertThat(actual).isEqualTo(excepted)
+    }
+
+    @Test
+    fun `14개 곱하기 1_000원은 14_000원이다`() {
+        // given
+        val count = 14
+        val money = Money(1_000)
+
+        // when, then
+        val excepted = Money(14_000)
+        val actual = money * count
 
         assertThat(actual).isEqualTo(excepted)
     }
