@@ -1,3 +1,5 @@
+package domain
+
 data class BonusNumber(
     private val number: LottoNumber
 ) {

@@ -1,3 +1,5 @@
+package domain
+
 data class WinnerLotto(
     private val lotto: Lotto,
     private val bonusNumber: BonusNumber,

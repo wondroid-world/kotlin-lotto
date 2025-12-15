@@ -1,3 +1,5 @@
+package domain
+
 enum class Rank(val countOfMatch: Int, val winningMoney: Int, val matchBonusRequired: Boolean = false) {
     FIRST(6, 2_000_000_000),
     SECOND(5, 30_000_000, true),

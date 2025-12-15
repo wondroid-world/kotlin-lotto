@@ -1,3 +1,5 @@
+package domain
+
 class LottoSeller {
     fun getCountOfLotto(money: Money): Int = money / PRICE_LOTTO
 

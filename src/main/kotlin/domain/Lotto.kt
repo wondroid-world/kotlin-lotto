@@ -1,3 +1,5 @@
+package domain
+
 data class Lotto(
     private val _numbers: List<LottoNumber>
 ) {

@@ -1,3 +1,5 @@
+package domain
+
 @JvmInline
 value class Money(
     private val value: Int,
