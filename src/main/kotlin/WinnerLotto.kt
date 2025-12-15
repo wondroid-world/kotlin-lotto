@@ -1,4 +1,4 @@
-data class WinnnerLotto(
+data class WinnerLotto(
     private val lotto: Lotto,
     private val bonusNumber: BonusNumber,
 ) {
@@ -9,4 +9,11 @@ data class WinnnerLotto(
     private fun countOfMatch(other: Lotto): Int = lotto.matchCount(other)
 
     private fun matchBonusNumber(other: Lotto): Boolean = bonusNumber.contains(other)
+
+    fun rank(other: Lotto): Rank {
+        val countOfMatch: Int = countOfMatch(other)
+        val isBonusNumber: Boolean = matchBonusNumber(other)
+
+        return Rank.of(countOfMatch, isBonusNumber)
+    }
 }
