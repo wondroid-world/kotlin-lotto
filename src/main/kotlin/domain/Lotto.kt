@@ -1,20 +1,18 @@
 package domain
 
-data class Lotto(
-    private val _numbers: List<LottoNumber>
+class Lotto(
+    _numbers: List<LottoNumber>,
 ) {
     init {
         require(_numbers.size == _numbers.toSet().size)
         require(_numbers.size == SIZE)
     }
 
-    constructor(vararg nums: Int) : this(nums.map(::LottoNumber))
-
     private val numbers: Set<LottoNumber> = _numbers.toSet()
 
-    val number: List<Int> get() = _numbers.map { it.value }.sorted()
+    fun numbersToInt(): List<Int> = numbers.map { it.value }.sorted()
 
-    fun matchCount(other: Lotto): Int = numbers.count { num -> other.contains(num) }
+    fun matchCount(other: Lotto): Int = numbers.count(other::contains)
 
     fun contains(num: LottoNumber): Boolean = num in numbers
 
@@ -24,5 +22,7 @@ data class Lotto(
         fun from(nums: List<Int>): Lotto {
             return Lotto(nums.map(::LottoNumber))
         }
+
+        fun of(vararg nums: Int): Lotto = from(nums.toList())
     }
 }

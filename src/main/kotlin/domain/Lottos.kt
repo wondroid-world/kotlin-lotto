@@ -1,31 +1,20 @@
 package domain
 
 class Lottos(
-    val value: List<Lotto>
+    val value: List<Lotto>,
 ) {
     val count: Int get() = value.size
 
-    var ranks: List<Rank> = emptyList()
-        private set
+    private val purchaseAmount: Money get() = LottoSeller.PRICE_LOTTO * this.count
 
-    private val totalWinningMoney: Money get() = this.ranks.map { it.winningMoney }.reduce { acc, money -> acc + money }
+    fun ranks(winnerLotto: WinnerLotto): List<Rank> = value.map(winnerLotto::rank)
 
-    private val purchaseAmount: Money = LottoSeller.PRICE_LOTTO * this.count
+    fun profit(winnerLotto: WinnerLotto): Double = totalWinningMoney(winnerLotto) / purchaseAmount
 
-    val profit: Double get() = totalWinningMoney / purchaseAmount
-
-
-    fun ranks(winnerLotto: WinnerLotto): List<Rank> {
-        val ranks = value.map { lotto: Lotto ->
-            winnerLotto.rank(lotto)
-        }
-        this.ranks = ranks
-        return ranks
-    }
+    private fun totalWinningMoney(winnerLotto: WinnerLotto): Money =
+        ranks(winnerLotto).map { it.winningMoney }.reduce { acc, money -> acc + money }
 }
 
 fun Lottos.forEach(action: (Lotto) -> Unit) {
-    for (lotto in value) {
-        action(lotto)
-    }
+    value.forEach(action)
 }

@@ -91,4 +91,3 @@ class MoneyTest {
         assertThat(actual).isEqualTo(excepted)
     }
 }
-

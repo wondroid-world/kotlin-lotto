@@ -2,10 +2,10 @@ package domain
 
 @JvmInline
 value class LottoNumber(
-   val value: Int,
+    val value: Int,
 ) {
     init {
-        require(value in START_NUMBER .. END_NUMBER) {"로또 번호는 1부터 45사이의 숫자입니다."}
+        require(value in START_NUMBER..END_NUMBER) { "로또 번호는 1부터 45사이의 숫자입니다." }
     }
 
     companion object {

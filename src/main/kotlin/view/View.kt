@@ -1,6 +1,12 @@
 package view
 
-import domain.*
+import domain.BonusNumber
+import domain.Lotto
+import domain.Lottos
+import domain.Money
+import domain.Rank
+import domain.WinnerLotto
+import domain.forEach
 
 object View {
     fun startMessage(): Money {
@@ -13,7 +19,7 @@ object View {
     fun showCountOfLotto(lottos: Lottos) {
         println("${lottos.count}개를 구매했습니다.")
         lottos.forEach { lotto: Lotto ->
-            println("[${lotto.number.joinToString(", ")}]")
+            println("[${lotto.numbersToInt().joinToString(", ")}]")
         }
     }
 
@@ -26,18 +32,21 @@ object View {
         return WinnerLotto(lotto, bonusNumber)
     }
 
-    fun showPrize(lottos: Lottos) {
+    fun showPrize(
+        ranks: List<Rank>,
+        profit: Double,
+    ) {
         println(
             """
             당첨 통계
             ---------
-            3개 일치 (5000원)- ${lottos.ranks.count { it == Rank.FIFTH }}개
-            4개 일치 (50000원)- ${lottos.ranks.count { it == Rank.FOURTH }}개
-            5개 일치 (1500000원)- ${lottos.ranks.count { it == Rank.THIRD }}개
-            5개 일치, 보너스 볼 일치(30000000원) - ${lottos.ranks.count { it == Rank.SECOND }}개
-            6개 일치 (2000000000원)- ${lottos.ranks.count { it == Rank.FIRST }}개
-            총 수익률은 ${lottos.profit}입니다.
-        """.trimIndent()
+            3개 일치 (5000원)- ${ranks.count { it == Rank.FIFTH }}개
+            4개 일치 (50000원)- ${ranks.count { it == Rank.FOURTH }}개
+            5개 일치 (1500000원)- ${ranks.count { it == Rank.THIRD }}개
+            5개 일치, 보너스 볼 일치(30000000원) - ${ranks.count { it == Rank.SECOND }}개
+            6개 일치 (2000000000원)- ${ranks.count { it == Rank.FIRST }}개
+            총 수익률은 ${profit}입니다.
+            """.trimIndent(),
         )
     }
 }

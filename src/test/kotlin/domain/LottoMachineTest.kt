@@ -14,4 +14,3 @@ class LottoMachineTest {
         assertThat(actual).isInstanceOf(Lotto::class.java)
     }
 }
-

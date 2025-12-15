@@ -8,8 +8,6 @@ value class Money(
         require(value >= 0) { "돈은 0원이상이여야합니다." }
     }
 
-    fun toInt(): Int = value
-
     operator fun minus(other: Money): Money = Money(this.value - other.value)
 
     operator fun plus(other: Money): Money = Money(this.value + other.value)
