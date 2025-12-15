@@ -12,6 +12,8 @@ data class Lotto(
 
     private val numbers: Set<LottoNumber> = _numbers.toSet()
 
+    val number: List<Int> get() = _numbers.map { it.value }.sorted()
+
     fun matchCount(other: Lotto): Int = numbers.count { num -> other.contains(num) }
 
     fun contains(num: LottoNumber): Boolean = num in numbers
