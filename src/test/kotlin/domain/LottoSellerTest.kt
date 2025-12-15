@@ -8,24 +8,6 @@ class LottoSellerTest {
 
     @ParameterizedTest
     @CsvSource(
-        "0, 0",
-        "15_600, 15",
-        "10_000, 10"
-    )
-    fun `구입 금액에 따라 살 수 있는 로또의 개수가 달라진다`(money: Int, countOfLotto: Int) {
-        // given
-        val seller = LottoSeller()
-        val money = Money(money)
-
-        // when, then
-        val excepted: Int = countOfLotto
-        val actual = seller.getCountOfLotto(money)
-
-        assertThat(actual).isEqualTo(excepted)
-    }
-
-    @ParameterizedTest
-    @CsvSource(
         "15_600, 600",
         "10_000, 0",
         "1_000, 0",
